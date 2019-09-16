@@ -1,3 +1,7 @@
+config/twitter.yml
+
+############### GITHUB added the following:
+
 *.gem
 *.rbc
 /.config
