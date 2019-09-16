@@ -6,6 +6,18 @@ configure :production do
 enable :reloader
 end
 
+=begin
+for security
+- run as unpriviledged user (not root)
+- set :environment, :production # debuggable means being open
+this could be useful as well
+- set :bind, 'localhost' # as it runs behind Apache with
+  ProxyPass /ruby http://localhost:4567
+=end
+set :environment, :production
+set :bind, 'localhost'
+#set :port, 4567
+
 # session
 enable :sessions
 # h
@@ -26,7 +38,7 @@ end
 get '/auth/twitter/callback' do
     auth = env['omniauth.auth']
     session[:auth]={:uid=>auth.uid,:name=>auth.info.name}
-    redirect '/'
+    redirect '/ruby/'
 end
 
 before do
@@ -34,7 +46,7 @@ before do
     if session.include? :auth then
         @name=session[:auth][:name]
     else
-        redirect '/auth/twitter'
+        redirect '/auth/twitter/'
     end
 end
 
