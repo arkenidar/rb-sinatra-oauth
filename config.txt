@@ -1,6 +1,7 @@
 >> apache2 host .conf :
 
+#for /ruby/ app URL prefix (while proxying)
 ProxyPass               /ruby/ http://localhost:4567/
 ProxyPassReverse        /ruby/ http://localhost:4567/
-Redirect /auth/twitter/ https://arkenidar.com/ruby/auth/twitter/
-Redirect /auth/twitter/callback/ https://arkenidar.com/ruby/auth/twitter/callback/
+Redirect /auth/twitter/ /ruby/auth/twitter/
+Redirect /auth/twitter/callback/ /ruby/auth/twitter/callback/
