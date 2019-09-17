@@ -1,0 +1,6 @@
+>> apache2 host .conf :
+
+ProxyPass               /ruby/ http://localhost:4567/
+ProxyPassReverse        /ruby/ http://localhost:4567/
+Redirect /auth/twitter/ https://arkenidar.com/ruby/auth/twitter/
+Redirect /auth/twitter/callback/ https://arkenidar.com/ruby/auth/twitter/callback/
