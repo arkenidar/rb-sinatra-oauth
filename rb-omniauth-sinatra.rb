@@ -29,6 +29,7 @@ require 'omniauth-twitter'
 #http://sinatrarb.com/contrib/config_file
 require "sinatra/config_file"
 config_file 'config/twitter.yml'
+config_file 'config/url.yml'
 
 use OmniAuth::Builder do
     provider :twitter,
@@ -38,7 +39,7 @@ end
 get '/auth/twitter/callback' do
     auth = env['omniauth.auth']
     session[:auth]={:uid=>auth.uid,:name=>auth.info.name}
-    redirect '/ruby/'
+    redirect settings.after_login
 end
 
 before do
